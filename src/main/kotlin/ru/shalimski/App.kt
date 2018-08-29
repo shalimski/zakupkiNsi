@@ -60,6 +60,8 @@ fun main(args: Array<String>) {
 
     val zipFiles = File(Constants.FILEPATH).listFiles { _, name -> name.contains(".zip") }
 
+    zipFiles.sortBy { file -> file.name }
+
     val connection = DriverManager.getConnection(connectionString, username, password)
     val stat = connection.createStatement()
     stat.execute(createTable())
