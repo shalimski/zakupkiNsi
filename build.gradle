@@ -60,9 +60,5 @@ jar {
         into('build/libs/')
     }
 
-    copy{
-        from('build/libs/')
-        into('C:\\nginx\\html\\static')
-    }
 }
 
