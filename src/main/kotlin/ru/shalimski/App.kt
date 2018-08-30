@@ -72,7 +72,7 @@ fun main(args: Array<String>) {
         val entry = zin.entries().nextElement()
         val input = zin.getInputStream(entry)
         val xmlString = IOUtils.toString(input, Charsets.UTF_8)
-        val xmlJSONObj = XML.toJSONObject(xmlString)
+        val xmlJSONObj = XML.toJSONObject(xmlString, true)
         val arrayOrg = xmlJSONObj.query(Constants.XML_ORGANIZATION) as JSONArray
 
         val st = connection.createStatement()
@@ -127,7 +127,7 @@ fun downloadOrganizations() {
 }
 
 fun updateExpression(id: String, data: String): String =
-        "INSERT INTO organizations (id, data) VALUES ($id , '$data') ON CONFLICT (id) DO UPDATE SET data='$data'"
+        "INSERT INTO organizations (id, data) VALUES ('$id' , '$data') ON CONFLICT (id) DO UPDATE SET data='$data'"
 
 fun createTable(): String {
     return """CREATE TABLE IF NOT EXISTS public.organizations
